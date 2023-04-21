@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google-Auth</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+       <div class="child">
+         <div>
+                <input type="text" name="" id="name" placeholder="name" required>
+         </div>
+         <div>
+            <input type="email" name="" id="email" placeholder="email" required>
+         </div>
+         <div>
+            <input type="password" name="" id="credential" placeholder="Credential" required>
+         </div>
+         <input class="btn" type="submit" value="submit" id="SignIn">
+         <hr>
+
+         <div class="btn-group">
+            <button class="btn">Google</button>
+            <button class="btn">Facebook</button>
+            
+         </div>
+       </div>
+    </div>
+
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+        import { getDatabase } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+        import { getAuth, createUserWithEmailAndPassword } from "./firebase/auth";
+
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyCi2_HBy_aaupkqS0C-Gh8X0W9cEVofA9g",
+          authDomain: "auth-2f785.firebaseapp.com",
+          projectId: "auth-2f785",
+          storageBucket: "auth-2f785.appspot.com",
+          messagingSenderId: "413556334700",
+          appId: "1:413556334700:web:498cc91c4daebb46117849"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const auth = getAuth();
+         
+        SignIn.addEventListener('click',(e) =>{
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('credential').value;
+            var name = document.getElementById('name').value;
+
+            createUserWithEmailAndPassword(auth ,email ,password)
+            .then((userCredential) =>{
+                const user = userCredential.user; 
+                alert('user created!')
+            })
+            .catch((error) =>{
+                const errorCode = eror.code;
+                const errorMessage = err.message;
+
+                alert(errorMessage)
+            })
+        })
+
+      </script>
+</body>
+</html>

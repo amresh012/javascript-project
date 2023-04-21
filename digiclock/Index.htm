@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGI-CLOCK</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link rel="stylesheet" href="index.css">
+
+</head>
+<body>
+    <div class="clock">
+        <div class="hour-hand">00</div>
+        <span>:</span>
+        <div class="min-hand">00</div>
+        <span>:</span>
+        <div class="sec-hand">00</div>
+    </div>
+
+    <script>
+
+var hour = document.getElementsByClassName("hour-hand")[0];
+var minute = document.getElementsByClassName("min-hand")[0];
+var second = document.getElementsByClassName("sec-hand")[0];
+
+function updateTime() {
+  var now = new Date();
+  var hours = now.getHours();
+  var minutes = now.getMinutes();
+  var seconds = now.getSeconds();
+
+  // Add leading zeros to minutes and seconds
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
+
+  hour.textContent = hours;
+  minute.textContent = minutes;
+  second.textContent = seconds;
+}
+
+setInterval(updateTime, 1000);
+
+    </script>
+</body>
+</html>
